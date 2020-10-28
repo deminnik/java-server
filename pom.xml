@@ -8,5 +8,13 @@
     <artifactId>java-server</artifactId>
     <version>1.0</version>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.3.0.M1</version>
+        </dependency>
+    </dependencies>
 
 </project>
