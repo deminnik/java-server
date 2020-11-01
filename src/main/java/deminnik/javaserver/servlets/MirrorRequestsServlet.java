@@ -1,4 +1,4 @@
-package deminnik.javaserver;
+package deminnik.javaserver.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
