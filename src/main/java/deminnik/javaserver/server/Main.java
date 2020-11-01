@@ -1,5 +1,7 @@
 package deminnik.javaserver.server;
 
+import deminnik.javaserver.account.AccountService;
+import deminnik.javaserver.account.UserProfile;
 import deminnik.javaserver.servlets.MirrorRequestsServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -7,10 +9,12 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        MirrorRequestsServlet mirrorRequestsServlet = new MirrorRequestsServlet();
+        AccountService accountService = new AccountService();
+
+        accountService.addNewUser(new UserProfile("admin"));
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(mirrorRequestsServlet), "/mirror");
+        context.addServlet(new ServletHolder(new MirrorRequestsServlet()), "/mirror");
 
         Server server = new Server(8080);
         server.setHandler(context);
