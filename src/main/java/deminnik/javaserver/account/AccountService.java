@@ -1,5 +1,6 @@
 package deminnik.javaserver.account;
 
+import deminnik.javaserver.db.DBException;
 import deminnik.javaserver.db.DataBaseService;
 
 import java.util.HashMap;
@@ -18,7 +19,11 @@ public class AccountService {
     }
 
     public void addNewUser(UserProfile userProfile) {
-        loginToProfile.put(userProfile.getLogin(), userProfile);
+        try {
+            dataBaseService.addUser(userProfile);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
 
     public UserProfile getUserByLogin(String login) {

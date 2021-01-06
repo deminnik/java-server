@@ -1,5 +1,6 @@
 package deminnik.javaserver.db;
 
+import deminnik.javaserver.account.UserProfile;
 import org.h2.jdbcx.JdbcDataSource;
 
 import java.sql.Connection;
@@ -21,6 +22,27 @@ public class DataBaseService {
             System.out.println("Autocommit: " + connection.getAutoCommit());
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addUser(UserProfile user) throws DBException {
+        try {
+            connection.setAutoCommit(false);
+            UsersDAO dao = new UsersDAO(connection);
+            dao.createTable();
+            dao.insertUser(user);
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ignore) {
+            }
+            throw new DBException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ignore) {
+            }
         }
     }
 
