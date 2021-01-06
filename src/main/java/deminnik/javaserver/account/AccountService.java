@@ -1,13 +1,18 @@
 package deminnik.javaserver.account;
 
+import deminnik.javaserver.db.DataBaseService;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class AccountService {
+    private final DataBaseService dataBaseService;
     private final Map<String, UserProfile> loginToProfile;
     private final Map<String, UserProfile> sessionIdToProfile;
 
     public AccountService() {
+        dataBaseService = new DataBaseService();
+        dataBaseService.printConnectInfo();
         loginToProfile = new HashMap<>();
         sessionIdToProfile = new HashMap<>();
     }
