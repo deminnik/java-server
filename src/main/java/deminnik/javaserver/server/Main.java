@@ -28,5 +28,7 @@ public class Main {
         } catch (DBException e) {
             e.printStackTrace();
         }
+
+        accountService.close();
     }
 }

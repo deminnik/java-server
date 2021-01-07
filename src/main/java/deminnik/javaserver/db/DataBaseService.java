@@ -64,4 +64,13 @@ public class DataBaseService {
         }
         return null;
     }
+
+    public void cleanUp() throws DBException {
+        UsersDAO dao = new UsersDAO(connection);
+        try {
+            dao.dropTable();
+        } catch (SQLException e) {
+            throw new DBException(e);
+        }
+    }
 }

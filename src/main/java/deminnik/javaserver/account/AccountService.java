@@ -41,4 +41,12 @@ public class AccountService {
     public void deleteSession(String sessionId) {
         sessionIdToProfile.remove(sessionId);
     }
+
+    public void close() {
+        try {
+            dataBaseService.cleanUp();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+    }
 }
