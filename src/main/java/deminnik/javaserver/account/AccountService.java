@@ -2,6 +2,7 @@ package deminnik.javaserver.account;
 
 import deminnik.javaserver.db.DBException;
 import deminnik.javaserver.db.DataBaseService;
+import deminnik.javaserver.db.DataBaseServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ public class AccountService {
     private final Map<String, UserProfile> sessionIdToProfile;
 
     public AccountService() {
-        dataBaseService = new DataBaseService();
+        dataBaseService = new DataBaseServiceImpl();
         dataBaseService.printConnectInfo();
         sessionIdToProfile = new HashMap<>();
     }
