@@ -5,6 +5,7 @@ import deminnik.javaserver.db.DBException;
 import deminnik.javaserver.servlets.MirrorRequestsServlet;
 import deminnik.javaserver.servlets.SignInServlet;
 import deminnik.javaserver.servlets.SignUpServlet;
+import deminnik.javaserver.servlets.WebSocketEchoServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -18,6 +19,7 @@ public class Main {
             context.addServlet(new ServletHolder(new MirrorRequestsServlet()), "/mirror");
             context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
             context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
+            context.addServlet(new ServletHolder(new WebSocketEchoServlet()), "/chat");
 
             Server server = new Server(8080);
             server.setHandler(context);
