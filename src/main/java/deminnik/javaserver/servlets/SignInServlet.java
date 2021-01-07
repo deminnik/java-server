@@ -19,8 +19,9 @@ public class SignInServlet extends HttpServlet {
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
+        String pass = request.getParameter("password");
         UserProfile user = accountService.getUserByLogin(login);
-        if (user != null) {
+        if (user != null && pass.equals(user.getPass())) {
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().println("Authorized: " + login);
         } else {

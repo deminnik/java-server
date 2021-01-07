@@ -73,4 +73,15 @@ public class DataBaseService {
             throw new DBException(e);
         }
     }
+
+    public UserProfile getUser(String login) {
+        UsersDAO dao = new UsersDAO(connection);
+        try {
+            UserDataSet userDataSet = dao.getUserByLogin(login);
+            return new UserProfile(userDataSet.getLogin(), userDataSet.getPassword(), userDataSet.getEmail());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

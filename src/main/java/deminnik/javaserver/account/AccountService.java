@@ -8,13 +8,11 @@ import java.util.Map;
 
 public class AccountService {
     private final DataBaseService dataBaseService;
-    private final Map<String, UserProfile> loginToProfile;
     private final Map<String, UserProfile> sessionIdToProfile;
 
     public AccountService() {
         dataBaseService = new DataBaseService();
         dataBaseService.printConnectInfo();
-        loginToProfile = new HashMap<>();
         sessionIdToProfile = new HashMap<>();
     }
 
@@ -27,7 +25,7 @@ public class AccountService {
     }
 
     public UserProfile getUserByLogin(String login) {
-        return loginToProfile.get(login);
+        return dataBaseService.getUser(login);
     }
 
     public UserProfile getUserBySessionId(String sessionId) {

@@ -12,10 +12,10 @@ public class UsersDAO {
         this.executor = new Executor(connection);
     }
 
-    public long getUserId(UserProfile user) throws SQLException {
-        return executor.execQuery("select * from users where login='" + user.getLogin() + "'", result -> {
+    public UserDataSet getUserByLogin(String login) throws SQLException {
+        return executor.execQuery("select * from users where login='" + login + "'", result -> {
             result.next();
-            return result.getLong(1);
+            return new UserDataSet(result.getLong(1), result.getString(2), result.getString(3), result.getString(4));
         });
     }
 
